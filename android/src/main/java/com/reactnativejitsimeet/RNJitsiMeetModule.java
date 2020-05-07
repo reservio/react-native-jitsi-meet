@@ -32,7 +32,7 @@ public class RNJitsiMeetModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void call(String url, ReadableMap userInfo) {
+    public void call(String url, ReadableMap userInfo, ReadableMap config) {
         UiThreadUtil.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -57,6 +57,18 @@ public class RNJitsiMeetModule extends ReactContextBaseJavaModule {
                             .setRoom(url)
                             .setAudioOnly(false)
                             .setUserInfo(_userInfo)
+                            .setSubject(config.getString("subject"))
+                            .setAudioMuted(config.getBoolean("audioMuted"))
+                            .setVideoMuted(config.getBoolean("videoMuted"))
+                            .setFeatureFlag("add-people.enabled", false)
+                            .setFeatureFlag("calendar.enabled", false)
+                            .setFeatureFlag("chat.enabled", false)
+                            .setFeatureFlag("close-captions.enabled", false)
+                            .setFeatureFlag("invite.enabled", false)
+                            .setFeatureFlag("meeting-name.enabled", false)
+                            .setFeatureFlag("meeting-password.enabled", false)
+                            .setFeatureFlag("pip.enabled", false)
+                            .setFeatureFlag("raise-hand.enabled", false)
                             .build();
                     mJitsiMeetViewReference.getJitsiMeetView().join(options);
                 }
@@ -65,7 +77,7 @@ public class RNJitsiMeetModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void audioCall(String url, ReadableMap userInfo) {
+    public void audioCall(String url, ReadableMap userInfo, ReadableMap config) {
         UiThreadUtil.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -90,6 +102,18 @@ public class RNJitsiMeetModule extends ReactContextBaseJavaModule {
                             .setRoom(url)
                             .setAudioOnly(true)
                             .setUserInfo(_userInfo)
+                            .setSubject(config.getString("subject"))
+                            .setAudioMuted(config.getBoolean("audioMuted"))
+                            .setVideoMuted(config.getBoolean("videoMuted"))
+                            .setFeatureFlag("add-people.enabled", false)
+                            .setFeatureFlag("calendar.enabled", false)
+                            .setFeatureFlag("chat.enabled", false)
+                            .setFeatureFlag("close-captions.enabled", false)
+                            .setFeatureFlag("invite.enabled", false)
+                            .setFeatureFlag("meeting-name.enabled", false)
+                            .setFeatureFlag("meeting-password.enabled", false)
+                            .setFeatureFlag("pip.enabled", false)
+                            .setFeatureFlag("raise-hand.enabled", false)
                             .build();
                     mJitsiMeetViewReference.getJitsiMeetView().join(options);
                 }
